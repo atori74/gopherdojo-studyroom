@@ -1,3 +1,4 @@
+// imgconv package is for converting image to different type.
 package imgconv
 
 import (
@@ -9,6 +10,7 @@ import (
 	"os"
 )
 
+// ImageType is the type of image supported to convert.
 type ImageType int
 
 const (
@@ -17,6 +19,7 @@ const (
 	GIF
 )
 
+// GetImageType receives file type of images and returns ImageType.
 func GetImageType(t string) (ImageType, bool) {
 	switch t {
 	case "jpeg", "jpg":
@@ -30,6 +33,7 @@ func GetImageType(t string) (ImageType, bool) {
 	}
 }
 
+// Ext returns extension to output as a file.
 func (t ImageType) Ext() string {
 	switch t {
 	case JPG:
@@ -43,6 +47,7 @@ func (t ImageType) Ext() string {
 	}
 }
 
+// Convert encodes image as given ImageType and write that to given file.
 func Convert(file *os.File, image image.Image, toType ImageType) error {
 	switch toType {
 	case JPG:
