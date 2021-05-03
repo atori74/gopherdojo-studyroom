@@ -50,6 +50,10 @@ func main() {
 	}
 
 	err := filepath.WalkDir(*flagDir, func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return filepath.SkipDir
+		}
+
 		if d.IsDir() {
 			return nil
 		}
